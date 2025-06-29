@@ -5,11 +5,11 @@
 """
 
 from pyowm import OWM
-from pprint import pprint
+
 
 owm = OWM('3b7520cfa14d8220f49bed37a19a7b4d')
 mgr = owm.weather_manager()
-city = input('Enter city: ').capitalize()
+city = input('Enter city: ').capitalize() or 'Minsk'
 obs = mgr.weather_at_place(city)
 w = obs.to_dict()
-pprint(w)
+print(f'City: {w['location']['name']} | Weather: {w['weather']['detailed_status']} | Temperature: {obs.weather.temperature('celsius')['temp']}')
