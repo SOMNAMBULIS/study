@@ -21,15 +21,15 @@ while True:
 		if l.lower() == 'stop':
 			break
 		if l.split()[1] == '+':
-			print(f'Ответ: {int(l.split()[0]) + int(l.split()[2])}')
+			print(f'Ответ: {float(l.split()[0]) + float(l.split()[2])}')
 		elif l.split()[1] == '-':
-			print(f'Ответ: {int(l.split()[0]) - int(l.split()[2])}')
+			print(f'Ответ: {float(l.split()[0]) - float(l.split()[2])}')
 		elif l.split()[1] == '*':
-			print(f'Ответ: {int(l.split()[0]) * int(l.split()[2])}')
+			print(f'Ответ: {float(l.split()[0]) * float(l.split()[2])}')
 		elif l.split()[1] == '/':
-			print(f'Ответ: {int(l.split()[0]) / int(l.split()[2])}')
+			print(f'Ответ: {float(l.split()[0]) / float(l.split()[2])}')
 		elif l.split()[1] == '**':
-			print(f'Ответ: {int(l.split()[0]) ** int(l.split()[2])}')
+			print(f'Ответ: {float(l.split()[0]) ** float(l.split()[2])}')
 		else:
 			print('Неправильный формат. Пример: "2 + 4"')
 	except Exception:
