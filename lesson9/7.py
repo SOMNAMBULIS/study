@@ -17,8 +17,7 @@
 def login_val(l:list)->list:
 	bad_login = filter(lambda x:not x['login'].replace('_','0').isalnum() and x['login'].isascii(),l)
 	#bad_login = filter(lambda x:all(True if i.lower() not in 'qwertyuiopasdfghjklzxcvbnm_0123456789' else False for i in x['login']),l)
-	for i in bad_login:
-		print(f'Уважаемый {i["name"]}, ваш логин {i["login"]} не является корректным.')
+	return bad_login
 
 def filter_pass(l:list)->list:
     return list(filter(lambda x:len(x['password'])<5,l))
@@ -30,7 +29,9 @@ def main():
         {"name": "name3", "login": "___", "password": "some"},
     ]
     print(*filter_pass(d),sep='\n')
-    login_val(d)
+    for i in login_val(d):
+    	print(f'Уважаемый {i["name"]}, ваш логин {i["login"]} не является корректным.')
+    
     
 if __name__ == '__main__':
     main()
