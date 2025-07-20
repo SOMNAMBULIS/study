@@ -27,19 +27,17 @@ def dt(name_file:str)->list:
 	return dt
 
 def parse(l:list)->dict:
-	#lessons = dict()
+	res = dict.fromkeys([i.split(',')[1][1:] for i in l], [])
 	for i in l:
 		fio = i.split(',')[0]
 		clas = i.split(',')[1][1:]
-		#lessons = [i[0].split(', ')[-1] for i in l.split('(')]
-		# , (''.join(i.split(',')[2:]).split(')').split('(')[1].replace(' ', ','))
-		
-		lessons = (''.join(i.split(',')[2:]).split(')').split('(')[0][1:-1])
-		print(lessons)
-
+		lessons = [j.split(',')[-1][1:-1] for j in i.split('(')][:-1]
+		grade = [j.split(')')[0] for j in i.split('(')][1:]
+		res[clas].append({f'{fio}' : f'{fio}',
+							'objects': dict(zip(lessons, grade))})
+							
 def main():
 	name_file = 'students_grades.txt'
-	#print(dt(name_file))
 	parse(dt(name_file))
 
 if __name__ == '__main__':

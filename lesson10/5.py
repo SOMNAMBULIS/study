@@ -17,3 +17,19 @@ print(c10()) -> 13
 
 """
 
+def counter(count:int):
+	count = count
+	def a():
+		nonlocal count
+		count +=1
+		return count
+	return a
+
+def main():
+	c1 = counter(1)
+	c10 = counter(10)
+	print('\n'.join(str(c1()) for _ in range(3)))
+	print('\n'.join(str(c10()) for _ in range(3)))
+
+if __name__ == '__main__':
+	main()
