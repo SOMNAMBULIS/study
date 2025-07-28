@@ -7,23 +7,33 @@
 * сделать настраиваемы параметр который определяет печать в консоль или в файл
 и если в файл передать название фала
 """
-def decorator(func):
-	def wrapper():
-		res = func()
-		return res
-	return wrapper
-
-def decorator2(func):
+def decor(console: bool = True, file_name: str ='error.txt'):
+	def decorator(func):
+		def wrapper(*args,**kwargs):
+			try:
+				return func(*args,**kwargs)
+			except Exception as ex:
+				if console:
+					print(func.__name__)
+				else:
+					with open(file_name, 'a', encoding='utf-8') as f:
+						f.write(ex + '/n')
+		return wrapper
+	return decorator
+		
+def decorator(func, console: bool = True, file_name: str ='error.txt'):
 	def wrapper(*args,**kwargs):
 		try:
-			res = func(*args,**kwargs)
-			return res
-		except Exception:
-			print(func.__name__) 
+			return func(*args,**kwargs)
+		except Exception as ex:
+			if console:
+				print(func.__name__)
+			else:
+				with open(file_name, 'a', encoding='utf-8') as f:
+					f.write(ex + '/n')
 	return wrapper
 
-@decorator2
-@decorator	
+@decorator()
 def bad_test():
 	return 2/0
 		
